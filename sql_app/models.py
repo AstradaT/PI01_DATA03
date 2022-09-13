@@ -52,7 +52,8 @@ class Driver(Base):
 class PitStop(Base):
     __tablename__ = 'pit_stops'
 
-    id = Column(Integer, primary_key=True)
+    ix = Column(Integer, primary_key=True, auto_increment=True)
+    race_id = Column(Integer, ForeignKey('races.id'), nullable=False)
     driver_id = Column(Integer, ForeignKey('drivers.id'), nullable=False)
     stop = Column(Integer)
     lap = Column(Integer)
@@ -60,6 +61,7 @@ class PitStop(Base):
     duration = Column(Float)
     milliseconds = Column(Integer)
 
+    race = relationship('Race', back_populates='pit_stops')
     driver = relationship('Driver', back_populates='pit_stops')
 
 
@@ -76,6 +78,7 @@ class Race(Base):
     url = Column(String, nullable=False)
 
     circuit = relationship('Circuit', back_populates='races')
+    pit_stop = relationship('PitStop', back_populates='races')
     result = relationship('Result', back_populates='races')
 
 
