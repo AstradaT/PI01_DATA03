@@ -1,3 +1,4 @@
+# This file contains the SQLAlchemy models for the database
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, Float
 from sqlalchemy.orm import relationship
 from .database import Base
@@ -7,16 +8,16 @@ class Circuit(Base):
     __tablename__ = 'circuits'
 
     id = Column(Integer, primary_key=True)
-    ref = Column(String, nullable=False)
-    name = Column(String, nullable=False)
-    location = Column(String, nullable=False)
-    country = Column(String, nullable=False)
-    lat = Column(Float, nullable=False)
-    long = Column(Float, nullable=False)
-    alt = Column(Integer, nullable=False)
-    url = Column(String, nullable=False)
+    ref = Column(String)
+    name = Column(String)
+    location = Column(String)
+    country = Column(String)
+    lat = Column(Float)
+    long = Column(Float)
+    alt = Column(Integer)
+    url = Column(String)
 
-    race = relationship('Race', back_populates='circuits')
+    races = relationship('Race', backref='circuit')
 
 
 class Constructor(Base):
@@ -28,7 +29,7 @@ class Constructor(Base):
     nationality = Column(String)
     url = Column(String)
 
-    result = relationship('Result', back_populates='constructors')
+    results = relationship('Result', backref='constructor')
 
 
 class Driver(Base):
@@ -45,14 +46,25 @@ class Driver(Base):
     nationality = Column(String)
     url = Column(String)
 
-    pit_stop = relationship('PitStop', back_populates='drivers')
-    result = relationship('Result', back_populates='drivers')
+    qualifyings = relationship('Qualifying', backref='driver')
+
+
+class LapTime(Base):
+    __tablename__ = 'lap_times'
+
+    ix = Column(Integer, primary_key=True)
+    race_id = Column(Integer, ForeignKey('races.id'))
+    driver_id = Column(Integer, ForeignKey('drivers.id'))
+    lap = Column(Integer)
+    position = Column(Integer)
+    time = Column(String)
+    milliseconds = Column(Integer)
 
 
 class PitStop(Base):
     __tablename__ = 'pit_stops'
 
-    ix = Column(Integer, primary_key=True, auto_increment=True)
+    ix = Column(Integer, primary_key=True)
     race_id = Column(Integer, ForeignKey('races.id'), nullable=False)
     driver_id = Column(Integer, ForeignKey('drivers.id'), nullable=False)
     stop = Column(Integer)
@@ -61,8 +73,19 @@ class PitStop(Base):
     duration = Column(Float)
     milliseconds = Column(Integer)
 
-    race = relationship('Race', back_populates='pit_stops')
-    driver = relationship('Driver', back_populates='pit_stops')
+
+class Qualifying(Base):
+    __tablename__ = 'qualifyings'
+
+    id = Column(Integer, primary_key=True)
+    race_id = Column(Integer, ForeignKey('races.id'))
+    driver_id = Column(Integer, ForeignKey('drivers.id'))
+    constructor_id = Column(Integer, ForeignKey('constructors.id'))
+    number = Column(Integer)
+    position = Column(Integer)
+    q1 = Column(String)
+    q2 = Column(String)
+    q3 = Column(String)
 
 
 class Race(Base):
@@ -77,9 +100,7 @@ class Race(Base):
     time = Column(String)
     url = Column(String, nullable=False)
 
-    circuit = relationship('Circuit', back_populates='races')
-    pit_stop = relationship('PitStop', back_populates='races')
-    result = relationship('Result', back_populates='races')
+    qualifyings = relationship('Qualifying', backref='race')
 
 
 class Result(Base):
@@ -93,17 +114,14 @@ class Result(Base):
     grid = Column(Integer)
     position = Column(Integer)
     position_text = Column(Integer)
-    positionOrder = Column(Integer)
+    position_order = Column(Integer)
     points = Column(Integer)
     laps = Column(Integer)
     time = Column(String)
     milliseconds = Column(Integer)
-    fastestLap = Column(Integer)
+    fastest_lap = Column(Integer)
     rank = Column(Integer)
-    fastestLapTime = Column(Float)
-    fastestLapSpeed = Column(Float)
-    statusId = Column(Integer)
+    fastest_lap_time = Column(Float)
+    fastest_lap_speed = Column(Float)
+    status_id = Column(Integer)
     
-    race = relationship('Race', back_populates='results')
-    driver = relationship('Driver', back_populates='results')
-    constructor = relationship('Constructor', back_populates='results')

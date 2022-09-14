@@ -3,20 +3,18 @@ import csv, json
 
 def main():
     
-    data = []
-    fieldnames = ['resultId', 'raceId', 'driverId', 'constructorId', 'number', 'grid', 'position', 
-    'positionText', 'positionOrder', 'points', 'laps', 'time', 'milliseconds', 'fastestLap', 'rank',
-    'fastestLapTime', 'fastestLapSpeed', 'statusId']
+    fieldnames = ["qualifyId", "raceId", "driverId", "constructorId", "number", "position", "q1", "q2", "q3"]
 
-    with open('Datasets/results.json') as json_file:
-        for row in json_file:
-            data.append(json.loads(row))
+    with open('Datasets/Qualifying/qualifying_split_2.json') as json_file:
+        data = json.load(json_file)
     
-    with open('test.csv', 'w') as csv_file:
-        writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
-        writer.writeheader()
+
+    with open('test.csv', 'a') as csv_file:
+        csv_writer = csv.writer(csv_file)
+        #csv_writer.writerow(data[0].keys())
+        #writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
         for i in range(len(data)):
-            writer.writerow(data[i])
+            csv_writer.writerow(data[i].values())
 
 
 if __name__ == "__main__":

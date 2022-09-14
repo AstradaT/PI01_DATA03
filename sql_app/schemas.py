@@ -1,4 +1,19 @@
+# This file contains the Pydantic models
 from pydantic import BaseModel
+
+
+class Race(BaseModel):
+    id : int
+    year : int
+    round : int
+    circuit_id : int
+    name : str
+    date : str
+    time : str
+    url : str
+
+    class Config:
+        orm_mode = True
 
 
 class ItemBase(BaseModel):
