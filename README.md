@@ -1,60 +1,146 @@
-# Proyecto Individual 1- Data 03- Soy Henry   
-## Creación de una API
-![image](https://user-images.githubusercontent.com/108296379/182138583-9011699a-f009-4454-885e-80dca182b6c8.png)
+<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
+<a name="readme-top"></a>
+<!--
+*** Thanks for checking out the Best-README-Template. If you have a suggestion
+*** that would make this better, please fork the repo and create a pull request
+*** or simply open an issue with the tag "enhancement".
+*** Don't forget to give the project a star!
+*** Thanks again! Now go create something AMAZING! :D
+-->
 
-## Consigna
-Para este proyecto individual, deberán absorver los conocimientos necesarios para la creación y correcta ejecución de una API. Bajo esta norma, recibirán un conjunto de datasets en diferentes formatos los cuáles deberán ser normalizados y analizados para garantizar su calidad. (Ver Plus)
 
-La consigna, propone la utilización de el framework FastAPI para el desarrollo, lo cuál deberá respetarse. Para esto, sugerimos leer la documentación del sitio oficial, el cuál se caracteriza por su legibilidad y entendimiento para la correcta explotación de la herramienta.
 
-Una vez normalizado el dataset y entendiendo la problemática final, deberán de crear una serie de consultas que la API debe solucionar. Estas son:  
-- Año con más carreras<br>
-<mark>"2021":23</mark>
-- Piloto con mayor cantidad de primeros puestos<br>
-<mark>{"name":"Lewis Hamilton","driver_id":1,"first_places":98}</mark>
-- Nombre del circuito más corrido<br>
-<mark>{"id":14,"name":"Autodromo Nazionale di Monza","races_count":71}</mark>
-- Piloto con mayor cantidad de puntos en total, cuyo constructor sea de nacionalidad sea American o British<br>
-<mark>{"name":"Jenson Button","points_total":1154}</mark>
+<!-- PROJECT SHIELDS -->
+<!--
+*** I'm using markdown "reference style" links for readability.
+*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
+*** See the bottom of this document for the declaration of the reference variables
+*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
+*** https://www.markdownguide.org/basic-syntax/#reference-style-links
+-->
 
-  
-## Pasos a seguir
-1. Normalización y creado de relaciones del conjunto de datos.
-2. Investigar sobre la creación de API's con el framework FastAPI.
-3. Desarrollo de las consultas derivadas.
-4. Crear y subir video.
 
-## Plus:
-- Documentación del contenido de la API.
-- Documentación de procedimiento de uso de la API.
-- Creación de relaciones con SQL.
-- Hacer un deploy en Heroku (o con alguna herramienta similar).
 
-## Tips:
-- Prestar atención a la calidad del dato.
-- Leer la documentación oficial de FastAPI.
-- Comparar con diferentes consultas los resultados obtenidos y los deseados.
-- Si vas a usar Heroku, procura implementarlo desde el inicio del armado de tu script.
-- SUPERTIP: Es el mejor momento para que comiencen a trabajar/familiarizarse con el uso de Github en sus proyectos!
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/AstradaT">
+    <img src="https://avatars.githubusercontent.com/u/42160024" alt="Avatar" width="80" height="80">
+  </a>
 
-### Repasemos conceptos. ¿Que es una API?  
-Se llama Application Programming interface o, por su traducción, Interfaz de Programación de Aplicaciones al conjunto de subrutinas, funciones y procedimientos que ofrece cierta biblioteca para ser utilizada por otro software como una capa de abstracción.  
-  
-Vamos a traducir el párrafo anterior en una imágen:  
-<img src = "https://images-cdn.9gag.com/photo/aBnQb8z_700b.jpg" height = 300>
+  <h3 align="center">Formula 1 World Championship API</h3>
+</div>
 
-### ¿Que función cumple FastAPI?  
-FastAPI es un web framework moderno y rápido (de alto rendimiento) para construir APIs con Python 3.6+ basado en las anotaciones de tipos estándar de Python.  
-Posee Guías explicativas detalladas paso por paso, donde podrán sacarse todas las dudas que vayan surgiendo con respecto al uso de esta.  
-  
-  
-# Muy Importante -> VIDEO DEMO
-El video no deberá contar con más de 5 minutos, donde deberán mostrar la carga de los datos dentro de la api y las consultas que se les pidieron anteriormente.  
-Se deberá subir el video a YouTube y en configuración de privacidad brindar acceso a quien posee el link. Asegurarse que el código grabado sea legible en todo momento. Para esto pueden utilizar Loom, Zoom u otra capturadora que posea entrada de audio para la entrada de su explicación.  
 
-La descripción del mismo debera ser: NOMBRE Y APELLIDO ESTUDIANTE - DSH - FastAPI.  
-Ejemplo -> Fulanitode Tal - DSH - FastAPI  
 
-### ¡Mucha Suerte!  
+<!-- ABOUT THE PROJECT -->
+## Sobre Este Proyecto
 
-<img src = "https://user-images.githubusercontent.com/96025598/188937586-28575753-fbd6-42de-beca-81ae35b659e0.gif" height = 300>
+<div align="center">
+    <img src="img/screenshot.png" alt="Project Screenshot" width="100%">
+</div>
+<br>
+
+### Esta API fue creada para consultar la base de datos Formula 1 World Championship (1950 - 2022)🏎🏆.
+## Tablas
+**circuits**: circuitos en donde se corrieron las carreras<br>
+**constructors**: constructores<br>
+**drivers**: conductores<br>
+**lap_times**: tiempos de vueltas<br>
+**pit_stops**: paradas en boxes<br>
+**qualifyings**: calificaciones<br>
+**races**: carreras<br>
+**results**: resultados<br>
+
+
+
+### Hecho Con
+
+* [FastAPI](https://fastapi.tiangolo.com/)
+* [SQLite](https://www.sqlite.org/index.html)
+
+
+
+<!-- GETTING STARTED -->
+### Instalación
+
+1. Clonar el repositorio
+    ```sh
+    git clone https://github.com/AstradaT/PI01_DATA03.git
+    ```
+2. Instalar librerías necesarias
+    ```sh
+    pip install -r requirements.txt
+    ```
+3. Correr servidor de manera local (Ctrl+C para detener)
+   ```sh
+   uvicorn main:app
+   ```
+
+
+
+<!-- USAGE EXAMPLES -->
+## Ejemplo de Uso
+
+**/tabla/** - Leer todas las filas de la tabla.<br>
+**/tabla/id** - Leer una sola fila de la tabla.<br>
+**/tabla?skip=50&limit=400** - Saltar 50 filas y limitar el resultado a 400 filas.
+
+#### Por defecto, las URLs para **lap_times**, **pit_stops** y **results** devuelven 1000 resultados. Cambia el valor con el parametro **limit=** o pasa a la siguiente página con **skip=**.
+
+
+
+<!-- CONTACT -->
+## Contact
+
+Tomás Astrada - [Linkedin](https://www.linkedin.com/in/tom%C3%A1s-astrada-370b73171/)<br>
+Email - tomasastrada907@gmail.com
+
+
+
+<!-- ACKNOWLEDGMENTS -->
+## Reconocimientos
+
+* [FastAPI CRUD Router](https://fastapi-crudrouter.awtkns.com/)
+
+
+
+<!-- LICENSE -->
+## Licencia
+
+Licensed under the Apache License, Version 2.0. See `LICENSE.txt` for more information.
+
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
+[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
+[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
+[forks-url]: https://github.com/othneildrew/Best-README-Template/network/members
+[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
+[stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
+[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
+[issues-url]: https://github.com/othneildrew/Best-README-Template/issues
+[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
+[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://linkedin.com/in/othneildrew
+[product-screenshot]: images/screenshot.png
+[Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
+[Next-url]: https://nextjs.org/
+[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[React-url]: https://reactjs.org/
+[Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
+[Vue-url]: https://vuejs.org/
+[Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
+[Angular-url]: https://angular.io/
+[Svelte.dev]: https://img.shields.io/badge/Svelte-4A4A55?style=for-the-badge&logo=svelte&logoColor=FF3E00
+[Svelte-url]: https://svelte.dev/
+[Laravel.com]: https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white
+[Laravel-url]: https://laravel.com
+[Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
+[Bootstrap-url]: https://getbootstrap.com
+[JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
+[JQuery-url]: https://jquery.com 
