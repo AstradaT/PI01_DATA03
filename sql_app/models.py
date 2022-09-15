@@ -46,7 +46,9 @@ class Driver(Base):
     nationality = Column(String)
     url = Column(String)
 
+    lap_times = relationship('LapTime', backref='driver')
     qualifyings = relationship('Qualifying', backref='driver')
+    results = relationship('Result', backref='driver')
 
 
 class LapTime(Base):
@@ -70,7 +72,7 @@ class PitStop(Base):
     stop = Column(Integer)
     lap = Column(Integer)
     time = Column(String)
-    duration = Column(Float)
+    duration = Column(String)
     milliseconds = Column(Integer)
 
 
@@ -100,26 +102,28 @@ class Race(Base):
     time = Column(String)
     url = Column(String, nullable=False)
 
+    lap_times = relationship('LapTime', backref='race')
     qualifyings = relationship('Qualifying', backref='race')
+    results = relationship('Result', backref='race')
 
 
 class Result(Base):
     __tablename__ = 'results'
 
-    result_id = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True)
     race_id = Column(Integer, ForeignKey('races.id'))
     driver_id = Column(Integer, ForeignKey('drivers.id'))
     constructor_id = Column(Integer, ForeignKey('constructors.id'))
     number = Column(Integer)
     grid = Column(Integer)
     position = Column(Integer)
-    position_text = Column(Integer)
+    position_text = Column(String)
     position_order = Column(Integer)
     points = Column(Integer)
     laps = Column(Integer)
     time = Column(String)
     milliseconds = Column(Integer)
-    fastest_lap = Column(Integer)
+    fastest_lap = Column(String)
     rank = Column(Integer)
     fastest_lap_time = Column(Float)
     fastest_lap_speed = Column(Float)

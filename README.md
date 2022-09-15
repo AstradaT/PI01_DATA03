@@ -8,10 +8,14 @@ Para este proyecto individual, deberán absorver los conocimientos necesarios pa
 La consigna, propone la utilización de el framework FastAPI para el desarrollo, lo cuál deberá respetarse. Para esto, sugerimos leer la documentación del sitio oficial, el cuál se caracteriza por su legibilidad y entendimiento para la correcta explotación de la herramienta.
 
 Una vez normalizado el dataset y entendiendo la problemática final, deberán de crear una serie de consultas que la API debe solucionar. Estas son:  
-- Año con más carreras
-- Piloto con mayor cantidad de primeros puestos
-- Nombre del circuito más corrido
-- Piloto con mayor cantidad de puntos en total, cuyo constructor sea de nacionalidad sea American o British
+- Año con más carreras<br>
+<mark>"2021":23</mark>
+- Piloto con mayor cantidad de primeros puestos<br>
+<mark>{"name":"Lewis Hamilton","driver_id":1,"first_places":98}</mark>
+- Nombre del circuito más corrido<br>
+<mark>{"id":14,"name":"Autodromo Nazionale di Monza","races_count":71}</mark>
+- Piloto con mayor cantidad de puntos en total, cuyo constructor sea de nacionalidad sea American o British<br>
+<mark>{"name":"Jenson Button","points_total":1154}</mark>
 
   
 ## Pasos a seguir
