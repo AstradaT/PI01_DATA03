@@ -64,7 +64,7 @@ class PitStop(BaseModel):
     stop: int
     lap: int
     time: str
-    duration: float
+    duration: str
     milliseconds: int
 
     class Config:

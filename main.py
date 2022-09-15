@@ -3,8 +3,8 @@ from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy import func
 from sqlalchemy.sql import select
 from sqlalchemy.orm import Session
-from . import crud, models, schemas
-from .database import SessionLocal, engine
+from sql_app import crud, models, schemas
+from sql_app.database import SessionLocal, engine
 from starlette.responses import RedirectResponse
 from fastapi_crudrouter import SQLAlchemyCRUDRouter as CRUDRouter
 
@@ -30,12 +30,14 @@ def root():
 
 @app.get("/races_per_year/")
 def get_races_per_year(db: Session=Depends(get_db)):
+    # Año con más carreras
     q = db.query(models.Race.year, func.count(models.Race.id)).group_by(models.Race.year).order_by(func.count(models.Race.id))
     return q
 
 
 @app.get("/drivers_first_places/")
 def get_drivers_first_places(db: Session=Depends(get_db)):
+    # Piloto con mayor cantidad de primeros puestos
     sq = db.query(models.Qualifying.driver_id).filter(models.Qualifying.position==1).group_by(models.Qualifying.driver_id).add_columns(func.count(models.Qualifying.driver_id).label('first_places')).subquery()
     q = db.query(models.Driver.id, models.Driver.name, sq.c.first_places).join(sq, models.Driver.id == sq.c.driver_id).order_by(sq.c.first_places.desc()).all()
     return q
@@ -58,7 +60,7 @@ def get_races_per_circuit(db: Session=Depends(get_db)):
 @app.get("/drivers_points/")
 def get_drivers_points(db: Session=Depends(get_db)):
     # Piloto con mayor cantidad de puntos en total, cuyo constructor 
-    # sea de nacionalidad sea American o British
+    # sea de nacionalidad American o British
     sq1 = db.query(models.Constructor)\
         .filter(models.Constructor.nationality.in_(['American', 'British']))\
         .subquery()
@@ -101,6 +103,7 @@ app.include_router(CRUDRouter(
 app.include_router(CRUDRouter(
     schema = schemas.LapTime,
     db_model = models.LapTime,
+    paginate=1000,
     db = get_db,
     prefix = 'lap_times'
 ))
