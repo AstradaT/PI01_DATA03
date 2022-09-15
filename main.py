@@ -30,24 +30,23 @@ description = """
 
 **/tabla/** - Leer todas las filas de la tabla.<br>
 **/tabla/id** - Leer una sola fila de la tabla.<br>
-**/tabla?skip=50&limit=400** - Saltar 50 filas y limitar el resultado a 400 filas.
+**/tabla?skip=50&limit=400** - Saltar 50 filas y limitar el resultado a 400 filas.<br>
+**/races_per_year** - Devuelve cantidad de carreras corridas por año.<br>
+**/drivers_first_places** - Devuelve cada conductor y la cantidad de veces que obtuvo primer puesto.<br>
+**/races_per_circuit** - Devuelve cantidad de carreras corridas por circuito.<br>
+**/drivers_points** - Devuelve puntos totales de pilotos cuyos constructores sean American o British.<br>
 
 ##### Por defecto, las URLs para **lap_times**, **pit_stops** y **results** devuelven 1000 resultados. Cambia el valor con el parametro **limit=** o pasa a la siguiente página con **skip=**.
+
+[GitHub](https://github.com/AstradaT) - [Linkedin](https://www.linkedin.com/in/tom%C3%A1s-astrada-370b73171/)<br>
+Email - tomasastrada907@gmail.com<br>
+[Licencia Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0)<br>
 Copyright 2022 Tomás Astrada
 """
 
 app = FastAPI(
     title = "Formula 1 World Championship API",
-    description = description,
-    contact = {
-        "name": "Tomás Astrada",
-        "url": "https://github.com/AstradaT",
-        "email": "tomasastrada907@gmail.com"
-    },
-    license_info = {
-        "name": "Apache 2.0",
-        "url": "https://www.apache.org/licenses/LICENSE-2.0"
-    }
+    description = description
 )
 
 
@@ -124,7 +123,7 @@ def get_query1(db: Session=Depends(get_db)):
 
 @app.get("/races_per_year/")
 def get_races_per_year(db: Session=Depends(get_db)):
-    # Año con más carreras
+    # Año seguido de la cantidad de carreras en ese año
     q = db.query(models.Race.year, func.count(models.Race.id).label('races_count'))\
         .group_by(models.Race.year)\
         .order_by(desc('races_count'))\

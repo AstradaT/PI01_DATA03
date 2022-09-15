@@ -28,7 +28,7 @@
     <img src="https://avatars.githubusercontent.com/u/42160024" alt="Avatar" width="80" height="80">
   </a>
 
-  <h3 align="center">Formula 1 World Championship API</h3>
+  <h3 align="center">Formula 1 World Championship API 🏎🏆</h3>
 </div>
 
 
@@ -41,7 +41,7 @@
 </div>
 <br>
 
-### Esta API fue creada para consultar la base de datos [Formula 1 World Championship (1950 - 2022)](https://www.kaggle.com/datasets/rohanrao/formula-1-world-championship-1950-2020)🏎🏆.
+### Esta API fue creada para consultar la base de datos [Formula 1 World Championship (1950 - 2022)](https://www.kaggle.com/datasets/rohanrao/formula-1-world-championship-1950-2020).
 
 ### Tablas
 **circuits**: circuitos en donde se corrieron las carreras<br>
@@ -85,7 +85,11 @@
 
 **/tabla/** - Leer todas las filas de la tabla.<br>
 **/tabla/id** - Leer una sola fila de la tabla.<br>
-**/tabla?skip=50&limit=400** - Saltar 50 filas y limitar el resultado a 400 filas.
+**/tabla?skip=50&limit=400** - Saltar 50 filas y limitar el resultado a 400 filas.<br>
+**/races_per_year** - Devuelve cantidad de carreras corridas por año.<br>
+**/drivers_first_places** - Devuelve cada conductor y la cantidad de veces que obtuvo primer puesto.<br>
+**/races_per_circuit** - Devuelve cantidad de carreras corridas por circuito.<br>
+**/drivers_points** - Devuelve puntos totales de pilotos cuyos constructores sean American o British.<br>
 
 #### Por defecto, las URLs para **lap_times**, **pit_stops** y **results** devuelven 1000 resultados. Cambia el valor con el parametro **limit=** o pasa a la siguiente página con **skip=**.
 
