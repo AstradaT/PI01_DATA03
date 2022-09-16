@@ -1,3 +1,4 @@
+import uvicorn
 from fastapi import FastAPI, Depends
 from sqlalchemy import func, desc
 from sqlalchemy.sql import select
@@ -275,3 +276,7 @@ app.include_router(CRUDRouter(
     create_route = False,
     update_route = False
 ))
+
+
+if __name__ == '__main__':
+    uvicorn.run("main:app", host="0.0.0.0", port=os.getenv("PORT", default=5000), log_level="info")
