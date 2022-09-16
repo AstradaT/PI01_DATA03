@@ -1,5 +1,6 @@
 # This file contains the Pydantic models
 from pydantic import BaseModel
+from typing import Union
 
 
 class Circuit(BaseModel):
@@ -31,8 +32,8 @@ class Constructor(BaseModel):
 class Driver(BaseModel):
     id: int
     ref: str
-    number: int | None
-    code: str | None
+    number: Union[int, None]
+    code: Union[str, None]
     name: str
     forename: str
     surname: str
@@ -78,9 +79,9 @@ class Qualifying(BaseModel):
     constructor_id: int
     number: int
     position: int
-    q1: str | None
-    q2: str | None
-    q3: str | None
+    q1: Union[str, None]
+    q2: Union[str, None]
+    q3: Union[str, None]
 
     class Config:
         orm_mode = True
@@ -105,19 +106,19 @@ class Result(BaseModel):
     race_id: int
     driver_id: int
     constructor_id: int
-    number: int | None
+    number: Union[int, None]
     grid: int
-    position: int | None
+    position: Union[int, None]
     position_text: str
     position_order: int
     points: int
     laps: int
-    time: str | None
-    milliseconds: int | None
-    fastest_lap: int | None
-    rank: int | None
-    fastest_lap_time: str | None
-    fastest_lap_speed: float | None
+    time: Union[str, None]
+    milliseconds: Union[int, None]
+    fastest_lap: Union[int, None]
+    rank: Union[int, None]
+    fastest_lap_time: Union[str, None]
+    fastest_lap_speed: Union[float, None]
     status_id: int
 
     class Config:
