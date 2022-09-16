@@ -1,4 +1,5 @@
 import uvicorn
+import os
 from fastapi import FastAPI, Depends
 from sqlalchemy import func, desc
 from sqlalchemy.sql import select
