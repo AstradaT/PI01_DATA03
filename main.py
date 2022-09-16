@@ -1,9 +1,8 @@
-from itertools import groupby
-from fastapi import FastAPI, Depends, HTTPException
+from fastapi import FastAPI, Depends
 from sqlalchemy import func, desc
 from sqlalchemy.sql import select
 from sqlalchemy.orm import Session
-from sql_app import crud, models, schemas
+from sql_app import models, schemas
 from sql_app.database import SessionLocal, engine
 from starlette.responses import RedirectResponse
 from fastapi_crudrouter import SQLAlchemyCRUDRouter as CRUDRouter
